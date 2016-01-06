@@ -76,10 +76,12 @@ Route.prototype.getQueryParam = function(key) {
 };
 
 Route.prototype.watchPathChange = function() {
+  console.log('watchPathChange _pathChangeDep.depend()');
   this._pathChangeDep.depend();
 };
 
 Route.prototype.registerRouteClose = function() {
+  console.log('Closed route _pathChangeDep.changed()');
   this._params = new ReactiveDict();
   this._queryParams = new ReactiveDict();
   this._routeCloseDep.changed();
@@ -102,7 +104,10 @@ Route.prototype.registerRouteChange = function(currentContext, routeChanging) {
   // We are doing it on the route close event. So, if they exists they'll 
   // get notify that
   if(!routeChanging) {
+    console.log('Changed Route _pathChangeDep.changed()')
     this._pathChangeDep.changed();
+  } else {
+    console.log('!routeChanging')
   }
 };
 
